@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+	<reference id="messagingService" interface="com.esri.ges.messaging.Messaging" timeout="1000"/>
+	<bean id="geometryExtentEnricherServiceBean" class="com.esri.geoevent.processor.enricher.GeometryExtentEnricherService" activation="eager">
+		<property name="bundleContext" ref="blueprintBundleContext"/>
+		<property name="messaging" ref="messagingService"/>
+	</bean>
+	<service id="GeometryExtentEnricherService" ref="geometryExtentEnricherServiceBean" interface="com.esri.ges.processor.GeoEventProcessorService"/>
+</blueprint>

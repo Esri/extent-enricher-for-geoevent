@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.esri.geoevent.parent</groupId>
+		<artifactId>extent-enricher</artifactId>
+		<version>10.3.1</version>
+	</parent>
+	<packaging>bundle</packaging>
+	<groupId>com.esri.geoevent.processor</groupId>
+	<artifactId>extent-enricher-processor</artifactId>
+	<name>Esri :: GeoEvent :: Processor :: Extent Enricher Processor</name>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+						<Bundle-ContactAddress>geoevent@esri.com</Bundle-ContactAddress>
+						<Bundle-Version>${project.version}</Bundle-Version>
+						<Export-Package/>
+						<Private-Package>com.esri.geoevent.processor.enricher</Private-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.osgi.compendium</artifactId>
+			<version>1.4.0</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>
