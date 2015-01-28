@@ -39,6 +39,7 @@ public class GeometryExtentEnricherDefinition extends GeoEventProcessorDefinitio
 		try
 		{
 			propertyDefinitions.put("geoEventDefinitionName", new PropertyDefinition("geoEventDefinitionName", PropertyType.String, null, "${com.esri.geoevent.processor.extent-enricher-processor.PROCESSOR_GED_NAME_LBL}", "${com.esri.geoevent.processor.extent-enricher-processor.PROCESSOR_GED_NAME_DESC}", true, false));
+			propertyDefinitions.put("addCenterPoint", new PropertyDefinition("addCenterPoint", PropertyType.Boolean, false, "${com.esri.geoevent.processor.extent-enricher-processor.PROCESSOR_ADD_CENTER_PT_LBL}", "${com.esri.geoevent.processor.extent-enricher-processor.PROCESSOR_ADD_CENTER_PT_DESC}", false, false));
 		}
 		catch (Exception error)
 		{

@@ -36,6 +36,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 
 import com.esri.core.geometry.Envelope2D;
 import com.esri.core.geometry.MapGeometry;
+import com.esri.core.geometry.Point;
 import com.esri.ges.core.component.ComponentException;
 import com.esri.ges.core.geoevent.DefaultFieldDefinition;
 import com.esri.ges.core.geoevent.FieldDefinition;
@@ -54,6 +55,7 @@ import com.esri.ges.messaging.Messaging;
 import com.esri.ges.messaging.MessagingException;
 import com.esri.ges.processor.GeoEventProcessorBase;
 import com.esri.ges.processor.GeoEventProcessorDefinition;
+import com.esri.ges.util.Converter;
 import com.esri.ges.util.Validator;
 
 public class GeometryExtentEnricher extends GeoEventProcessorBase implements ServiceTrackerCustomizer
@@ -64,7 +66,8 @@ public class GeometryExtentEnricher extends GeoEventProcessorBase implements Ser
 	private GeoEventDefinitionManager	geoEventDefinitionManager;
 	private ServiceTracker						geoEventDefinitionManagerTracker;
 	private String										geoEventDefinitionName;
-
+	private Boolean 									addCenterPoint = false;
+	
 	private Map<String, String>				edMapper	= new ConcurrentHashMap<String, String>();
 
 	protected GeometryExtentEnricher(GeoEventProcessorDefinition definition) throws ComponentException
@@ -78,6 +81,7 @@ public class GeometryExtentEnricher extends GeoEventProcessorBase implements Ser
 	public void afterPropertiesSet()
 	{
 		geoEventDefinitionName = Validator.compactWhiteSpaces(getProperty("geoEventDefinitionName").getValueAsString());
+		addCenterPoint = Converter.convertToBoolean(getProperty("addCenterPoint").getValueAsString());
 	}
 
 	@Override
@@ -110,7 +114,9 @@ public class GeometryExtentEnricher extends GeoEventProcessorBase implements Ser
 			newFields.add(new DefaultFieldDefinition("MINY", FieldType.Double));
 			newFields.add(new DefaultFieldDefinition("MAXX", FieldType.Double));
 			newFields.add(new DefaultFieldDefinition("MAXY", FieldType.Double));
-
+			if( addCenterPoint )
+				newFields.add(new DefaultFieldDefinition("CENTER_POINT", FieldType.Geometry));
+			
 			edOut = edIn.augment(newFields);
 			edOut.setOwner(getId());
 			if (StringUtils.isNotBlank(geoEventDefinitionName))
@@ -127,7 +133,7 @@ public class GeometryExtentEnricher extends GeoEventProcessorBase implements Ser
 
 	private GeoEvent populateGeoEvent(GeoEvent geoEvent, GeoEventDefinition edOut) throws MessagingException
 	{
-		GeoEvent outGeoEvent = geoEventCreator.create(edOut.getGuid(), new Object[] { geoEvent.getAllFields(), new Object[4] });
+		GeoEvent outGeoEvent = geoEventCreator.create(edOut.getGuid(), new Object[] { geoEvent.getAllFields(), (addCenterPoint) ? new Object[5] : new Object[4] });
 		outGeoEvent.setProperty(GeoEventPropertyName.TYPE, geoEvent.getProperty(GeoEventPropertyName.TYPE));
 		outGeoEvent.setProperty(GeoEventPropertyName.OWNER_ID, geoEvent.getProperty(GeoEventPropertyName.OWNER_ID));
 		outGeoEvent.setProperty(GeoEventPropertyName.OWNER_URI, geoEvent.getProperty(GeoEventPropertyName.OWNER_URI));
@@ -144,6 +150,11 @@ public class GeometryExtentEnricher extends GeoEventProcessorBase implements Ser
 				outGeoEvent.setField("MINY", boundingBox.ymin);
 				outGeoEvent.setField("MAXX", boundingBox.xmax);
 				outGeoEvent.setField("MAXY", boundingBox.ymax);
+				if( addCenterPoint )
+				{
+					Point centerPt = new Point(boundingBox.getCenter());
+					outGeoEvent.setField("CENTER_POINT", new MapGeometry(centerPt, geometry.getSpatialReference()));
+				}
 			}
 			catch( FieldException error )
 			{
