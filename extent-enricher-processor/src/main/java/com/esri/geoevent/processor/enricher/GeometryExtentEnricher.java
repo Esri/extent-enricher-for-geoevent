@@ -110,12 +110,12 @@ public class GeometryExtentEnricher extends GeoEventProcessorBase implements Ser
 		if (edOut == null)
 		{
 			List<FieldDefinition> newFields = new ArrayList<>();
-			newFields.add(new DefaultFieldDefinition("MINX", FieldType.Double));
-			newFields.add(new DefaultFieldDefinition("MINY", FieldType.Double));
-			newFields.add(new DefaultFieldDefinition("MAXX", FieldType.Double));
-			newFields.add(new DefaultFieldDefinition("MAXY", FieldType.Double));
+			newFields.add(new DefaultFieldDefinition("MinX", FieldType.Double));
+			newFields.add(new DefaultFieldDefinition("MinY", FieldType.Double));
+			newFields.add(new DefaultFieldDefinition("MaxX", FieldType.Double));
+			newFields.add(new DefaultFieldDefinition("MaxY", FieldType.Double));
 			if( addCenterPoint )
-				newFields.add(new DefaultFieldDefinition("CENTER_POINT", FieldType.Geometry));
+				newFields.add(new DefaultFieldDefinition("CenterPoint", FieldType.Geometry));
 			
 			edOut = edIn.augment(newFields);
 			edOut.setOwner(getId());
@@ -146,14 +146,14 @@ public class GeometryExtentEnricher extends GeoEventProcessorBase implements Ser
 			
 			try
 			{
-				outGeoEvent.setField("MINX", boundingBox.xmin);
-				outGeoEvent.setField("MINY", boundingBox.ymin);
-				outGeoEvent.setField("MAXX", boundingBox.xmax);
-				outGeoEvent.setField("MAXY", boundingBox.ymax);
+				outGeoEvent.setField("MinX", boundingBox.xmin);
+				outGeoEvent.setField("MinY", boundingBox.ymin);
+				outGeoEvent.setField("MaxX", boundingBox.xmax);
+				outGeoEvent.setField("MaxY", boundingBox.ymax);
 				if( addCenterPoint )
 				{
 					Point centerPt = new Point(boundingBox.getCenter());
-					outGeoEvent.setField("CENTER_POINT", new MapGeometry(centerPt, geometry.getSpatialReference()));
+					outGeoEvent.setField("CenterPoint", new MapGeometry(centerPt, geometry.getSpatialReference()));
 				}
 			}
 			catch( FieldException error )
