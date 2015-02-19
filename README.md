@@ -1,11 +1,11 @@
 # extent-enricher-for-geoevent
 
-ArcGIS 10.3 GeoEvent Extension for Server custom processor. The Extent Enricher for GeoEvent enriches incoming events with that Geometry's Extent (MINX, MAXX, MINY, MAXY fields).
+ArcGIS 10.3 GeoEvent Extension for Server custom processor. The Extent Enricher for GeoEvent enriches incoming events with that Geometry's Extent (MinX, MaxX, MinY, MaxY fields).
 
 ![App](extent-enricher-for-geoevent.png?raw=true)
 
 ## Features
-* Enriches incoming events with four fields (MINX, MAXX, MINY, MAXY) which represents that event geometry's extent.
+* Enriches incoming events with four fields (MinX, MaxX, MinY, MaxY) which represents that event geometry's extent.
 
 ## Instructions
 
