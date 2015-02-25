@@ -4,7 +4,7 @@
 
 	<groupId>com.esri.geoevent.parent</groupId>
 	<artifactId>extent-enricher</artifactId>
-	<version>10.3.1</version>
+	<version>10.3.0</version>
 	<packaging>pom</packaging>
 
 	<name>Esri :: GeoEvent :: Processor :: Extent Enricher</name>
