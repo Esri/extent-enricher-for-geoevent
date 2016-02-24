@@ -63,7 +63,7 @@ public class GeometryExtentEnricherDefinition extends GeoEventProcessorDefinitio
 	@Override
 	public String getVersion()
 	{
-		return "10.3.1";
+		return "10.4.0";
 	}
 
 	@Override

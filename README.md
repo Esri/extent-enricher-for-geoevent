@@ -1,6 +1,6 @@
 # extent-enricher-for-geoevent
 
-ArcGIS 10.3.x GeoEvent Extension for Server custom processor. The Extent Enricher for GeoEvent enriches incoming events with that Geometry's Extent (MinX, MaxX, MinY, MaxY fields). Optionally, the processor can add the Extent's center point as a new Geometry field.
+ArcGIS 10.4.x GeoEvent Extension for Server custom processor. The Extent Enricher for GeoEvent enriches incoming events with that Geometry's Extent (MinX, MaxX, MinY, MaxY fields). Optionally, the processor can add the Extent's center point as a new Geometry field.
 
 ![App](extent-enricher-for-geoevent.png?raw=true)
 
@@ -20,7 +20,7 @@ Installing the built jar files:
 
 ## Requirements
 
-* ArcGIS GeoEvent Extension for Server (certified with version 10.3.x).
+* ArcGIS GeoEvent Extension for Server (certified with version 10.4.x).
 * ArcGIS GeoEvent Extension SDK.
 * Java JDK 1.7 or greater.
 * Maven.
