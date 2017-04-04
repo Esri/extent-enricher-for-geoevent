@@ -1,34 +1,34 @@
 # extent-enricher-for-geoevent
 
-ArcGIS 10.4.x GeoEvent Extension for Server custom processor. The Extent Enricher for GeoEvent enriches incoming events with that Geometry's Extent (MinX, MaxX, MinY, MaxY fields). Optionally, the processor can add the Extent's center point as a new Geometry field.
+ArcGIS GeoEvent Server sample processor. The Extent Enricher Processor enriches incoming events with the Geometry's extent (MinX, MaxX, MinY, MaxY fields). Optionally, the processor can add the extent's center point as a new Geometry field.
 
 ![App](extent-enricher-for-geoevent.png?raw=true)
 
 ## Features
-* Enriches incoming events with four fields (MinX, MaxX, MinY, MaxY) which represents that event geometry's extent and optionally the Extent's center point as a new Geometry field (CenterPoint).
+* Enriches incoming events with four fields (MinX, MaxX, MinY, MaxY) which represents that event geometry's extent and optionally the extent's center point as a new Geometry field (CenterPoint).
 
 ## Instructions
 
 Building the source code:
 
-1. Make sure Maven and ArcGIS GeoEvent Extension SDK are installed on your machine.
+1. Make sure Maven and ArcGIS GeoEvent Server SDK are installed on your machine.
 2. Run 'mvn install -Dcontact.address=[YourContactEmailAddress]'
 
 Installing the built jar files:
 
-1. Copy the *.jar files under the 'target' sub-folder(s) into the [ArcGIS-GeoEvent-Extension-Install-Directory]/deploy folder.
+1. Copy the *.jar files under the 'target' sub-folder(s) into the [ArcGIS-GeoEvent-Server-Install-Directory]/deploy folder.
 
 ## Requirements
 
-* ArcGIS GeoEvent Extension for Server (certified with version 10.4.x).
-* ArcGIS GeoEvent Extension SDK.
+* ArcGIS GeoEvent Server for Server (certified with version 10.4.x).
+* ArcGIS GeoEvent Server SDK.
 * Java JDK 1.7 or greater.
 * Maven.
 
 ## Resources
 
-* [GeoEvent gallery item](http://www.arcgis.com/home/item.html?id=2bdf684d4b5342e2a8bf6036b6f816b8) on the ArcGIS GeoEvent Extension Gallery
-* [ArcGIS GeoEvent Extension for Server Resource Center](http://links.esri.com/geoevent)
+* [ArcGIS GeoEvent gallery item](http://www.arcgis.com/home/item.html?id=2bdf684d4b5342e2a8bf6036b6f816b8) on the ArcGIS GeoEvent Gallery
+* [ArcGIS GeoEvent Server Resources](http://links.esri.com/geoevent)
 * [ArcGIS Blog](http://blogs.esri.com/esri/arcgis/)
 * [twitter@esri](http://twitter.com/esri)
 
@@ -58,5 +58,5 @@ limitations under the License.
 A copy of the license is available in the repository's [license.txt](license.txt?raw=true) file.
 
 [](ArcGIS, GeoEvent, Processor)
-[](Esri Tags: ArcGIS GeoEvent Extension for Server)
+[](Esri Tags: ArcGIS GeoEvent Server)
 [](Esri Language: Java)
